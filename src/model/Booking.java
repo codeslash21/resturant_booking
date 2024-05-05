@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *This class is to create booking object
@@ -8,11 +9,11 @@ import java.util.Date;
 public class Booking {
     private Customer customer;
     private IRestaurant restaurant;
-    private int entryTime;
-    public Booking(Customer customer, IRestaurant restaurant, int entryTime) {
+    private List<String> slot;
+    public Booking(Customer customer, IRestaurant restaurant, List<String> slot) {
         this.customer = customer;
         this.restaurant = restaurant;
-        this.entryTime = entryTime;
+        this.slot = slot;
     }
 
     /**
@@ -25,6 +26,6 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Restaurant: "+restaurant.getName()+" was booked at "+entryTime+" by "+customer.toString();
+        return "Restaurant: "+restaurant.getName()+" was booked at "+slot.get(0)+" by "+customer.toString();
     }
 }

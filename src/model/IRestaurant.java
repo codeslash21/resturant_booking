@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Collection;
+
 /**
  * IRestaurant is an interface
  */
@@ -11,7 +13,8 @@ public interface IRestaurant {
     public double getRating();
     public double getCost();
     public FoodType getFoodType();
-    public int getOpeningHours();
-    public int getClosingHours();
-    public int getTimeSlot();
+    public double getOpeningHours();
+    public double getClosingHours();
+    public Collection<Double> getTimeSlot();
+    public int getCapacity();
 }

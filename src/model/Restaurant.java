@@ -1,5 +1,9 @@
 package model;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This class is to create restaurant object. It implements IRestaurant
  * @see model.IRestaurant
@@ -12,20 +16,26 @@ public class Restaurant implements IRestaurant{
     protected double rating;
     protected double cost;
     protected FoodType foodType;
-    protected int openingHours;
-    protected int closingHours;
-    protected int timeSlot;
-    public Restaurant(String name, String city, String area, String cuisine, double rating, double cost, FoodType foodType, int openingHours, int closingHours, int timeSlot) {
+    protected double openingHours;
+    protected double closingHours;
+    protected int slotDuration;
+    protected Map<Double, Integer> timeSlotToCapacityMap = new HashMap<>();
+    protected int capacity;
+    public Restaurant(String name, String city, String area, String cuisine, double cost, FoodType foodType, double openingHours, double closingHours, int slotDuration, int capacity) {
         this.name=name;
         this.city=city;
         this.area=area;
         this.cuisine=cuisine;
-        this.rating=rating;
         this.cost=cost;
         this.foodType=foodType;
         this.openingHours=openingHours;
         this.closingHours=closingHours;
-        this.timeSlot=timeSlot;
+        this.slotDuration=slotDuration;
+        this.capacity=capacity;
+        for(double i=openingHours;i<=closingHours;i+=1) {
+            this.timeSlotToCapacityMap.put(i, capacity);
+        }
+        this.rating=4+Math.random();
     }
 
     /**
@@ -96,7 +106,7 @@ public class Restaurant implements IRestaurant{
      * @return openingHours
      */
     @Override
-    public int getOpeningHours() {
+    public double getOpeningHours() {
         return openingHours;
     }
 
@@ -105,7 +115,7 @@ public class Restaurant implements IRestaurant{
      * @return closingHours
      */
     @Override
-    public int getClosingHours() {
+    public double getClosingHours() {
         return closingHours;
     }
 
@@ -114,7 +124,16 @@ public class Restaurant implements IRestaurant{
      * @return timeSlot
      */
     @Override
-    public int getTimeSlot() {
-        return timeSlot;
+    public Collection<Double> getTimeSlot() {
+        return timeSlotToCapacityMap.keySet();
+    }
+
+    /**
+     * This method will return the capacity of the restaurant at a particular time slot
+     * @return capacity
+     */
+    @Override
+    public int getCapacity() {
+        return capacity;
     }
 }
