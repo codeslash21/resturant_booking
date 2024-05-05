@@ -17,7 +17,7 @@ public class RestaurantService {
      * @param owner
      * @param restaurant
      */
-    public static void addRestaurant(Owner owner, Restaurant restaurant) {
+    public static void addRestaurant(Owner owner, IRestaurant restaurant) {
             restaurantMap.put(owner, restaurant);
     }
     /**
@@ -38,7 +38,7 @@ public class RestaurantService {
      * @param closingHours
      * @return list of time slots created with default 1 hour slot duration
      */
-    public static List<List<String>> addSlot(Restaurant restaurant, String openingHours, String closingHours) {
+    public static List<List<String>> addSlot(IRestaurant restaurant, String openingHours, String closingHours) {
         int openHour = Integer.parseInt(openingHours.split(":")[0]);
         String openMin = openingHours.split(":")[1];
         int closeHour = Integer.parseInt(closingHours.split(":")[0]);
