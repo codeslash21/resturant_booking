@@ -11,6 +11,12 @@ public class Owner {
     private String emailRegex = "^(.+)@(.+).(.+)$";
     private Pattern pattern = Pattern.compile(emailRegex);
 
+    /**
+     * This method will create instance of Owner
+     * @param firstName
+     * @param lastName
+     * @param email
+     */
     public Owner(String firstName, String lastName, String email) {
         if(!pattern.matcher(email).matches())
             throw new IllegalArgumentException("Invalid email address. Please give valid email");
@@ -21,6 +27,6 @@ public class Owner {
 
     @Override
     public String toString() {
-        return "Owner Name: "+firstName+" "+lastName+", Email: "+email;
+        return firstName+" "+lastName;
     }
 }

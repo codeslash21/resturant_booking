@@ -8,56 +8,72 @@ import java.util.Map;
 
 public class UserService {
     private static final Map<String, Customer> customerMap = new HashMap<>();
+    private static final Map<String, String> customerLoginMap = new HashMap<>();
     private static final Map<String, Owner> ownerMap = new HashMap<>();
+    private static final Map<String, String> ownerLoginMap = new HashMap<>();
 
     /**
-     * This method will add a new customer to record.
+     * This method adds a new customer to record.
      * @param firstName
      * @param lastName
      * @param email
      */
-    public static void addCustomer(String firstName, String lastName, String email) {
+    public static Customer addCustomer(String firstName, String lastName, String email, String password) {
         Customer customer = new Customer(firstName, lastName, email);
         customerMap.put(email, customer);
-    }
-
-    /**
-     * This method will add a new owner to record.
-
-     * @param firstName
-     * @param lastName
-     * @param email
-     */
-    public static void addOwner(String email, String firstName, String lastName) {
-        Owner owner = new Owner(firstName, lastName, email);
-        ownerMap.put(email, owner);
-    }
-
-    /**
-     * This method will return customer which is associated with the given email
-     * @param email
-     * @return Customer object
-     * @see model.Customer
-     */
-    public static Customer getCustomer(String email) {
-        Customer customer = customerMap.getOrDefault(email, null);
-        if(customer==null) {
-            throw new IllegalArgumentException("Email does not exist!");
-        }
+        customerLoginMap.put(email, password);
         return customer;
     }
 
     /**
-     * This method will return owner which is associated with the given email
+     * This method adds a new owner to record.
+
+     * @param firstName
+     * @param lastName
+     * @param email
+     */
+    public static Owner addOwner(String firstName, String lastName, String email, String password) {
+        Owner owner = new Owner(firstName, lastName, email);
+        ownerMap.put(email, owner);
+        ownerLoginMap.put(email,password);
+        return owner;
+    }
+
+    /**
+     * This method returns customer which is associated with the given email
+     * @param email
+     * @return Customer object
+     * @see model.Customer
+     */
+    public static Customer getCustomer(String email, String password) {
+        if(!customerLoginMap.containsKey(email)) {
+            System.out.println("This email address is not registered with us!");
+            return null;
+        }
+        if(!password.equals(customerLoginMap.get(email))) {
+            System.out.println("Wrong Password.");
+            return null;
+        }
+        return customerMap.get(email);
+    }
+
+
+
+    /**
+     * This method returns owner which is associated with the given email
      * @param email
      * @return Owner object
      * @see model.Customer
      */
-    public static Owner getOwner(String email) {
-        Owner owner = ownerMap.getOrDefault(email, null);
-        if(owner==null) {
-            throw new IllegalArgumentException("Email does not exist!");
+    public static Owner getOwner(String email, String password) {
+        if(!ownerLoginMap.containsKey(email)) {
+            System.out.println("This email address is not registered with us!");
+            return null;
         }
-        return owner;
+        if(!password.equals(ownerLoginMap.get(email))) {
+            System.out.println("Wrong Password.");
+            return null;
+        }
+        return ownerMap.get(email);
     }
 }

@@ -12,9 +12,6 @@ public interface IRestaurant {
     public String getCuisine();
     public double getRating();
     public double getCost();
-    public FoodType getFoodType();
-    public double getOpeningHours();
-    public double getClosingHours();
-    public Collection<Double> getTimeSlot();
+    public String getFoodType();
     public int getCapacity();
 }

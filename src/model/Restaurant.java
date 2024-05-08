@@ -15,26 +15,17 @@ public class Restaurant implements IRestaurant{
     protected String cuisine;
     protected double rating;
     protected double cost;
-    protected FoodType foodType;
-    protected double openingHours;
-    protected double closingHours;
-    protected int slotDuration;
+    protected String foodType;
     protected Map<Double, Integer> timeSlotToCapacityMap = new HashMap<>();
     protected int capacity;
-    public Restaurant(String name, String city, String area, String cuisine, double cost, FoodType foodType, double openingHours, double closingHours, int slotDuration, int capacity) {
+    public Restaurant(String name, String city, String area, String cuisine, double cost, String foodType, int capacity) {
         this.name=name;
         this.city=city;
         this.area=area;
         this.cuisine=cuisine;
         this.cost=cost;
         this.foodType=foodType;
-        this.openingHours=openingHours;
-        this.closingHours=closingHours;
-        this.slotDuration=slotDuration;
         this.capacity=capacity;
-        for(double i=openingHours;i<=closingHours;i+=1) {
-            this.timeSlotToCapacityMap.put(i, capacity);
-        }
         this.rating=4+Math.random();
     }
 
@@ -97,35 +88,8 @@ public class Restaurant implements IRestaurant{
      * @return foodType
      */
     @Override
-    public FoodType getFoodType() {
+    public String getFoodType() {
         return foodType;
-    }
-
-    /**
-     * This method return the opening hours of the restaurant.
-     * @return openingHours
-     */
-    @Override
-    public double getOpeningHours() {
-        return openingHours;
-    }
-
-    /**
-     * This method return the closing hours of the restaurant.
-     * @return closingHours
-     */
-    @Override
-    public double getClosingHours() {
-        return closingHours;
-    }
-
-    /**
-     * This method return the time slot of the restaurant.
-     * @return timeSlot
-     */
-    @Override
-    public Collection<Double> getTimeSlot() {
-        return timeSlotToCapacityMap.keySet();
     }
 
     /**
@@ -135,5 +99,10 @@ public class Restaurant implements IRestaurant{
     @Override
     public int getCapacity() {
         return capacity;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant: "+name+"\nCity: "+city+"\nArea: "+area+"\nCuisine: "+cuisine+"\nRating: "+rating+"\nCost for two: "+cost+"\nFood Type: "+foodType;
     }
 }
