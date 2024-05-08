@@ -2,7 +2,7 @@
 This restaurant booking app will allow restaurant owners to register their restaurants, to add time slots for their restaurant. Using this app customer can search restaurant based on search criteria like Location, Rating, Food type, Cuisine, Cost etc. Customer can book restaurant for an available slot on a specific date for n number of people. Customer can also see all their bookings.
 
 ## Main Components of the App
-The major components of the Hotel Reservation Application will consist of the following:
+The major components of the Restaurant Booking Application consist of the following:
 1. **CLI for the User Interface:** We'll use the Command Line Interface (or CLI) for the user interface. For this, we'll need to have Java monitor the CLI for user input, so the user can enter commands to search for available rooms, book rooms, and so on.
 2. **Java code:** The second main component is the Java code itself—this is where we add our business logic for the app.
 3. **Java collections:** Finally, we'll use Java collections for in-memory storage of the data we need for the app, such as the users' names, room availability, and so on.
